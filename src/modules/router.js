@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import ArtListComponent from './../components/artList/artList.vue';
+import ArtDetailComponent from './../components/artDetails/artDetail.vue';
 
 export default new VueRouter({
     mode: 'history',
@@ -11,6 +12,11 @@ export default new VueRouter({
             path: "/",
             name: 'ArtList',
             component: ArtListComponent
+        },
+        {
+            path: "/art/:id",
+            name: 'ArtDetail',
+            component: ArtDetailComponent
         },
     ]
 });
