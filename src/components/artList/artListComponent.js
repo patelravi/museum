@@ -1,5 +1,4 @@
 import { timingSafeEqual } from "crypto";
-import Axios from "axios";
 
 const axios = require('axios');
 const baseUrl = 'https://museum-backend.herokuapp.com/'
@@ -18,8 +17,8 @@ export default {
             return require('./../../assets/art_images/' + imgId + '.png');
         },
 
-        onArtClick(artId) {
-            this.$router.push({ name: 'ArtDetail', params: { id: artId } });
+        onArtClick(url) {
+            this.$router.push({ name: 'ArtDetail', query: { url: url } });
         },
 
        async fetchImages(){

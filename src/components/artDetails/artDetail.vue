@@ -5,8 +5,8 @@
         <div class="row box">
 
             <!-- Left side image -->
-            <div class="col-md-7 imageBox">
-                <img :src="getArtAssetUrl()">
+            <div class="col-md-7 imageBox" v-bind:style="{'background': 'url(' + getArtAssetUrl() + ')'}">
+                
             </div>
 
             <!-- Right side image descrption -->
@@ -33,7 +33,6 @@
                     <div class="row commentItem" v-for="comment in commentList">
                         <div class="col-md-1 col-1">
                             <img class="userImg" :src="getArtAssetUrl()">
-
                         </div>
                         <div class="col-md-11 col-11 commentContent">
                             <span class="name">{{comment.userName}}</span>

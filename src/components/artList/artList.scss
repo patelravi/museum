@@ -32,10 +32,11 @@
       .artContainer {
         position: relative;
         width: 100%;
-        background-size: 100% !important;
+        background-size: cover !important;
         background-position-x: center !important;
         background-position-y: top  !important;
-background-repeat: no-repeat !important;
+        background-repeat: no-repeat !important;
+
         img {
           width: 100%;
         }
