@@ -68,8 +68,9 @@ export default {
 
         // If its static image, show static image
         if (!isNaN(imgId) && parseInt(imgId) > 0 && parseInt(imgId) <= 20) {
+
             // Return static asset
-            this.imgUrl = require('./../../assets/art_images/' + intId + '.png');
+            this.imgUrl = require('./../../assets/art_images/' + imgId + '.png');
             return;
         }
 
