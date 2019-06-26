@@ -1,7 +1,11 @@
+const axios = require('axios');
+const baseUrl = 'https://museum-backend.herokuapp.com/'
+
 export default {
     name: "artDetail",
     data() {
         return {
+            imgUrl: null,
             commentList: [
                 {
                     userName: "natgeo",
@@ -56,9 +60,23 @@ export default {
         };
     },
     methods: {
-        getArtAssetUrl() {
-            console.log('returnign url =>', this.$route.query.url)
-            return this.$route.query.url;
+
+    },
+    async mounted() {
+
+        let imgId = this.$route.params.id;
+
+        // If its static image, show static image
+        if (!isNaN(imgId) && parseInt(imgId) > 0 && parseInt(imgId) <= 20) {
+            // Return static asset
+            this.imgUrl = require('./../../assets/art_images/' + intId + '.png');
+            return;
         }
+
+        // Read fetch image remotely
+        let url = baseUrl + 'public/image/' + imgId;
+        let response = await axios.get(url);
+        this.imgUrl = response.data.url;
+        console.log('image response', this.imageList);
     }
 };
