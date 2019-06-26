@@ -20,7 +20,7 @@ export default {
         onArtClick(imgObj) {
             // If its static image, show static image
             let intId = imgObj.id;
-            if (!isNaN(intId) && intId > 0 && intId <= 20) {
+            if (!isNaN(intId) && intId >= 0 && intId <= 20) {
                 this.$router.push({ name: 'ArtDetail', params: { id: (imgObj.id + 1) } });
             } else {
                 this.$router.push({ name: 'ArtDetail', params: { id: imgObj.id } });
