@@ -14,7 +14,7 @@ export default new VueRouter({
             component: ArtListComponent
         },
         {
-            path: "/art/:id",
+            path: "/art/detail",
             name: 'ArtDetail',
             component: ArtDetailComponent
         },

@@ -57,8 +57,8 @@ export default {
     },
     methods: {
         getArtAssetUrl() {
-            let imgId = this.$route.params.id;
-            return require('./../../assets/art_images/' + imgId + '.png');
+            console.log('returnign url =>', this.$route.query.url)
+            return this.$route.query.url;
         }
     }
 };
