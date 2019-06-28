@@ -4,6 +4,7 @@ Vue.use(VueRouter);
 
 import ArtListComponent from './../components/artList/artList.vue';
 import ArtDetailComponent from './../components/artDetails/artDetail.vue';
+import ProfileComponent from './../components/profile/profile.vue';
 
 export default new VueRouter({
     mode: 'history',
@@ -17,6 +18,11 @@ export default new VueRouter({
             path: "/art/:id",
             name: 'ArtDetail',
             component: ArtDetailComponent
+        },
+        {
+            path: "/profile/:email",
+            name: 'Profile',
+            component: ProfileComponent
         },
     ]
 });

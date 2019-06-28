@@ -1,5 +1,6 @@
 const axios = require('axios');
 const baseUrl = 'https://museum-backend.herokuapp.com/'
+// const baseUrl = 'http://localhost:7071/'
 
 export default {
     name: "artDetail",
@@ -77,7 +78,7 @@ export default {
         // Read fetch image remotely
         let url = baseUrl + 'public/image/' + imgId;
         let response = await axios.get(url);
-        this.imgUrl = response.data.url;
+        this.imgUrl = response.data.data;
         console.log('image response', this.imageList);
     }
 };

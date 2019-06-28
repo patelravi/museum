@@ -1,17 +1,24 @@
 import { timingSafeEqual } from "crypto";
 
 const axios = require('axios');
-const baseUrl = 'https://museum-backend.herokuapp.com/'
+const baseUrl = 'https://museum-backend.herokuapp.com/';
 
 export default {
     name: "artList",
     data() {
         return {
             emailId: null,
-            imageList: []
+            imageList: [],
+            fetchingImageList: false,
+            userInfo: null
+
         };
     },
     methods: {
+
+        onEditProfile() {
+            this.$router.push({ name: 'Profile', params: { email: this.userInfo.email } });
+        },
 
         getArtAssetUrl(imgId) {
             return require('./../../assets/art_images/' + imgId + '.png');
@@ -30,10 +37,31 @@ export default {
         async fetchImages() {
 
             if (this.emailId) {
+
+                // Fetch images 
+                this.fetchingImageList = true;
                 let url = baseUrl + 'public/images?email=' + this.emailId;
+                axios.get(url).then((result) => {
+                    this.imageList = result.data.images;
+                    this.fetchingImageList = false;
+                });
+
+
+                // Fetch details of user from email id
+                url = encodeURI(baseUrl + 'public/user/' + this.emailId);
                 let response = await axios.get(url);
-                this.imageList = response.data.images;
-                console.log('image list', this.imageList);
+                response = response.data.data;
+                // this.fetchingData = false;
+
+                if (response == null) {
+                    // no data found for given email id
+                    // redirect to default list page
+                    // this.$router.push({ name: 'ArtList' });
+                    // this.$router.go()
+                    location.href = '/'
+                } else {
+                    this.userInfo = response;
+                }
             } else {
 
                 for (var i = 0; i < 19; i++) {
@@ -45,6 +73,7 @@ export default {
                 console.log('image list =>', this.imageList);
 
             }
+
         }
 
     },
