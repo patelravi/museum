@@ -17,6 +17,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 // Configure Router
 import routerObj from './modules/router';
 
+console.log('environment is ', process.ENV);
+
 // Initialize vue root component
 import App from './App.vue'
 new Vue({
