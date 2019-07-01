@@ -22,7 +22,7 @@ export default {
 
             // Fetch details of user from email id
             let url = encodeURI(baseUrl + 'public/user');
-            let response = await axios.put(url, this.form);
+            await axios.put(url, this.form);
 
             this.$bvToast.toast(`Profile updated successfully.`, {
                 title: 'Success',

@@ -1,7 +1,10 @@
 <template>
     <div id="homePage">
         <div class="hero">
-            Welcome to eden.gallery!!!
+            Your Art, Online!!!
+        </div>
+        <div class="subHero">
+            The easiest way to showcase your artwork to friends, family, and strangers.
         </div>
     </div>
 </template>

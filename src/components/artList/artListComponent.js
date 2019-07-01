@@ -1,5 +1,3 @@
-import { timingSafeEqual } from "crypto";
-
 const axios = require('axios');
 const baseUrl = 'https://museum-backend.herokuapp.com/';
 
@@ -70,7 +68,6 @@ export default {
                         url: require('./../../assets/art_images/' + (i + 1) + '.png')
                     })
                 }
-                console.log('image list =>', this.imageList);
 
             }
 
