@@ -30,7 +30,6 @@ export default {
       editMode: false,
 
       // loader variables
-      updatingImageMetdata: false,
       fetchingArt: true,
       fetchingArtMetadata: true
     };
@@ -49,7 +48,7 @@ export default {
       this.editForm.description = this.form.description;
     },
     async updateImage() {
-      this.updatingImageMetdata = true;
+      this.fetchingArtMetadata = true;
 
       const params = {
         title: this.editForm.title,
@@ -63,10 +62,10 @@ export default {
           // disable edit mode when done saving art metadata
           this.editMode = false;
         }
-        this.updatingImageMetdata = false;
+        this.fetchingArtMetadata = false;
       }).catch((error) => {
         console.error(error);
-        this.updatingImageMetdata = false;
+        this.fetchingArtMetadata = false;
       })
     },
     cancelEdit() {
