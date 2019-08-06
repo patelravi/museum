@@ -1,7 +1,14 @@
-// import Axios from "axios";
-// let baseUrl = "http://22806788.ngrok.io/";
+import Axios from "axios";
+const baseUrl = require('./setting').getBaseUrl()
 
-export async function updateImageMetadata() {
-    // return Axios.post(baseUrl + 'updateImage', params)
-    return "hello world"
+export async function updateImageMetadata(artId, params) {
+    return Axios.post(baseUrl + 'public/updateImage/' + artId, params)
+}
+
+export async function fetchImageMetadata(artId, params) {
+    return Axios.get(baseUrl + 'public/image/metadata/' + artId, params)
+}
+
+export async function fetchArt(artId) {
+    return Axios.get(baseUrl + "public/image/" + artId);
 }

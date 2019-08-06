@@ -10,7 +10,7 @@
 
       </div>
 
-      <!-- Right side image descrption -->
+      <!-- Right side image description -->
       <div class="col-md-5 rightSide">
 
         <!-- Title Section -->
@@ -20,10 +20,18 @@
             <img class="logoImg" src="https://instagram.fbom2-1.fna.fbcdn.net/vp/20f886aa7cb7d8ed5194807bebc9bc3a/5DC227E8/t51.2885-19/s150x150/13597791_261499887553333_1855531912_a.jpg?_nc_ht=instagram.fbom2-1.fna.fbcdn.net">
           </div>
 
+          <!-- User name -->
           <div class="titleName">natgeo</div>
 
+          <!-- Right side settings icon -->
           <div class="settingsIcon">
-            <font-awesome-icon icon="ellipsis-h" />
+            <b-dropdown size="lg" variant="link" toggle-class="text-decoration-none" no-caret>
+              <template slot="button-content">
+                <font-awesome-icon icon="ellipsis-h" />
+              </template>
+              <b-dropdown-item @click="showEditForm">Edit</b-dropdown-item>
+            </b-dropdown>
+
           </div>
         </div>
 
@@ -32,18 +40,22 @@
         <div class="DescriptionItem">
 
           <template>
+
+            <div class="editbtn" v-if="!editMode">
+              <form class="display">
+                <br>
+                <b>Title</b>
+                <br>{{form.title}}<br>
+                <br>
+                <b>Painting</b>
+                <br>{{form.painting}}<br>
+                <br>
+                <b>Description</b>
+                <br>{{form.description}}
+              </form>
+            </div>
+
             <div>
-              <div class="editbtn" v-if="!editMode">
-                <div class="edit">
-                  <b-button size="sm" @click="edit()">Edit</b-button>
-                </div>
-                <br>
-                Title: {{form.title}}
-                <br>
-                Painting:{{form.painting}}
-                <br>
-                Description:{{form.descrption}}
-              </div>
 
               <div class="editform" v-if="editMode">
                 <template>
@@ -64,17 +76,17 @@
                       <!-- // painting input -->
                       <ValidationProvider rules="required" name="painting">
                         <b-form-group id="input-group-2" slot-scope="{ valid, errors }" small label="Painting" label-for="input-2">
-                          <b-form-input class="form-control form-control-sm" id="input-1" v-model="editForm.painting" :state="errors[0] ? false : (valid ? true : null)" required placeholder="Enter painting"></b-form-input>
+                          <b-form-input class="form-control form-control-sm" id="input-2" v-model="editForm.painting" :state="errors[0] ? false : (valid ? true : null)" required placeholder="Enter painting"></b-form-input>
                           <b-form-invalid-feedback id="inputLiveFeedback">
                             {{ errors[0] }}
                           </b-form-invalid-feedback>
                         </b-form-group>
                       </ValidationProvider>
 
-                      <!-- // descrption -->
-                      <ValidationProvider rules="required" name="descrption">
-                        <b-form-group id="input-group-2" slot-scope="{ valid, errors }" small label="Descrption" label-for="input-2">
-                          <b-form-textarea id="textarea" v-model="editForm.descrption" :state="errors[0] ? false : (valid ? true : null)" placeholder="Enter descrption..." rows="3" max-rows="6"></b-form-textarea>
+                      <!-- // description -->
+                      <ValidationProvider rules="required" name="description">
+                        <b-form-group id="input-group-3" slot-scope="{ valid, errors }" small label="Descrption" label-for="input-3">
+                          <b-form-textarea id="textarea" v-model="editForm.description" :state="errors[0] ? false : (valid ? true : null)" placeholder="Enter description..." rows="3" max-rows="6"></b-form-textarea>
                           <b-form-invalid-feedback id="inputLiveFeedback">
                             {{ errors[0] }}
                           </b-form-invalid-feedback>
@@ -82,9 +94,9 @@
                       </ValidationProvider>
 
                       <!-- // save  and cancle-->
-                      <b-button type="submit" class="btn btn-success" color="green" v-if="editMode">Save</b-button>
+                      <b-button type="submit" size="sm" class="btn btn-success" color="green" v-if="editMode">Save</b-button>
                       &nbsp;
-                      <b-button type="reset" @click="cancel()" class="btn btn-danger" color="primary" v-if="editMode">cancel</b-button>
+                      <b-button type="reset" size="sm" @click="cancelEdit()" class="btn btn-danger" color="primary" v-if="editMode">cancel</b-button>
 
                     </b-form>
                   </ValidationObserver>

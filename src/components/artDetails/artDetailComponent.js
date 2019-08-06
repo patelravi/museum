@@ -1,16 +1,10 @@
-const axios = require("axios");
-//import commentServices from "../../services/comment"
-const baseUrl = "https://museum-backend.herokuapp.com/";
-// const baseUrl = 'http://localhost:7071/'
 import {
   ValidationObserver,
   ValidationProvider
 } from "vee-validate";
 let artService = require("../../services/art")
-artService.updateImageMetadata();
 
 export default {
-
   $_veeValidate: {
     validator: 'new',
   },
@@ -22,20 +16,23 @@ export default {
   data() {
     return {
       form: {
-        title: "ymutnbrv",
-        painting: "rtbyb",
-        descrption: 'rbynbg'
+        title: "",
+        painting: "",
+        description: ""
       },
       editForm: {
         title: "",
         painting: "",
-        descrption: ""
+        description: ""
       },
-
       imgUrl: null,
-
+      artId: null,
       editMode: false,
-      updatingImage: false
+
+      // loader variables
+      updatingImageMetdata: false,
+      fetchingArt: true,
+      fetchingArtMetadata: true
     };
   },
 
@@ -43,75 +40,95 @@ export default {
     async DescriptionItem() {
       this.form.title = ''
       this.form.painting = ''
-      this.form.descrption = ''
+      this.form.description = ''
     },
-
-    edit() {
+    showEditForm() {
       this.editMode = true;
       this.editForm.title = this.form.title;
       this.editForm.painting = this.form.painting;
-      this.editForm.descrption = this.form.descrption;
+      this.editForm.description = this.form.description;
     },
-
     async updateImage() {
-      this.updatingImage = true;
+      this.updatingImageMetdata = true;
 
-      // const params = {
-      //   title: this.editForm.title,
-      //   painting: this.editForm.painting,
-      //   descrption: this.editForm.descrption
-      // }
+      const params = {
+        title: this.editForm.title,
+        painting: this.editForm.painting,
+        description: this.editForm.description
+      }
 
-      this.form.title = this.editForm.title;
-      this.form.painting = this.editForm.painting;
-      this.form.descrption = this.editForm.descrption;
-
-      // artService.updateImageMetadata(params).then((result) => {
-      //   if (result.data.success) {
-      //     // disable edit mode after saving the data
-      //     // this.editMode = false;
-      //   }
-      // }).catch((error) => {
-      //   console.error(error);
-      // })
-      this.editMode = false;
+      artService.updateImageMetadata(this.artId, params).then((result) => {
+        if (result.data.success) {
+          this.fetchArtMetadata();
+          // disable edit mode when done saving art metadata
+          this.editMode = false;
+        }
+        this.updatingImageMetdata = false;
+      }).catch((error) => {
+        console.error(error);
+        this.updatingImageMetdata = false;
+      })
     },
-
-    cancel() {
+    cancelEdit() {
       // reset form
       this.resetForm();
       // disable edit mode
       this.editMode = false;
     },
-
-
     //reset
     resetForm() {
       this.editForm.title = '';
       this.editForm.painting = '';
-      this.editForm.descrption = '';
+      this.editForm.description = '';
+    },
+
+    /********************Start: GET Image & Image Metdata *********/
+
+    async fetchArtImage() {
+
+      // If its static image, show static image
+      if (!isNaN(this.artId) && parseInt(this.artId) > 0 && parseInt(this.artId) <= 20) {
+        // Return static asset
+        this.imgUrl = require("./../../assets/art_images/" + this.artId + ".png");
+        return;
+      }
+
+      this.fetchingArt = true;
+      //Read image remotely
+      try {
+        let result = await artService.fetchArt(this.artId);
+        this.imgUrl = result.data.data;
+        this.fetchingArt = false;
+      } catch (e) {
+        this.fetchingArt = false;
+        console.error(e);
+      }
+    },
+
+    async fetchArtMetadata() {
+      this.fetchingArtMetadata = true;
+      try {
+        // Read art metadata
+        let result = await artService.fetchImageMetadata(this.artId);
+        if (result.data.success) {
+          this.form.title = result.data.data.title;
+          this.form.painting = result.data.data.painting;
+          this.form.description = result.data.data.description;
+        }
+        this.fetchingArtMetadata = false;
+      } catch (e) {
+        this.fetchingArtMetadata = false;
+        console.error(e);
+      }
     }
+
+    /********************End: GET Image & Image Metdata *********/
   },
 
-
-
   async created() {
-    let imgId = this.$route.params.id;
-
-    // If its static image, show static image
-    if (!isNaN(imgId) && parseInt(imgId) > 0 && parseInt(imgId) <= 20) {
-      // Return static asset
-      this.imgUrl = require("./../../assets/art_images/" + imgId + ".png");
-      return;
-    }
-
-    // //Read fetch image remotely
-
-    let url = baseUrl + "public/image/" + imgId;
-    let response = await axios.get(url);
-    this.imgUrl = response.data.data;
-    console.log("image response", this.imgUrl);
-
+    this.artId = this.$route.params.id;
+    this.fetchArtImage();
+    this.fetchArtMetadata();
   },
 
 }

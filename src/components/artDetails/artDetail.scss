@@ -9,6 +9,18 @@
   }
 
 
+  .display {
+    width: 400px;
+    border: 1px;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
+    font-size: 13px;
+    box-sizing: border-box;
+    color: #000;
+    display: block;
+  }
+
   .editform {
     margin: 0%;
     width: 400px;
@@ -16,14 +28,18 @@
     padding-left: 10px;
     padding: 20px 20px 30px 20px;
     font-size: 15px;
+    margin: 0px;
 
+    .form-group label {
 
+      font: bold;
+      margin: 0px;
+      color: #777
+    }
 
     #save {
       margin: 0%;
     }
-
-
   }
 
   .edit {
