@@ -1,4 +1,53 @@
 #artDetailPage {
+  .DescriptionItem {
+    margin: 0%;
+
+    .editbtn {
+      margin: 0%;
+      float: center;
+    }
+  }
+
+
+  .display {
+    width: 400px;
+    border: 1px;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
+    font-size: 13px;
+    box-sizing: border-box;
+    color: #000;
+    display: block;
+  }
+
+  .editform {
+    margin: 0%;
+    width: 400px;
+    text-align: left;
+    padding-left: 10px;
+    padding: 20px 20px 30px 20px;
+    font-size: 15px;
+    margin: 0px;
+
+    .form-group label {
+
+      font: bold;
+      margin: 0px;
+      color: #777
+    }
+
+    #save {
+      margin: 0%;
+    }
+  }
+
+  .edit {
+    float: right;
+    padding-right: 20px;
+    padding-top: 10px;
+  }
+
   // Desktop Style
   @media (min-width: 750px) {
     width: 70%;
@@ -42,6 +91,7 @@
         width: 100%;
         display: flex;
         margin-left: 0px;
+
         .logoImg {
           border-radius: 50%;
           border: 1px solid #e6e6e6;
@@ -95,6 +145,7 @@
           .commentContent {
             padding-left: 30px;
             font-size: 13px;
+
             .name {
               font-weight: bold;
               color: black;
@@ -130,11 +181,13 @@
         border-top: 1px solid #efefef;
         width: 100%;
         display: flex;
+
         input {
           // border: 1px solid red;
           border: none;
           padding: 0px;
           width: 100%;
+
           &:focus {
             outline: none;
           }

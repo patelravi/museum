@@ -1,84 +1,134 @@
-const axios = require('axios');
-const baseUrl = 'https://museum-backend.herokuapp.com/'
-// const baseUrl = 'http://localhost:7071/'
+import {
+  ValidationObserver,
+  ValidationProvider
+} from "vee-validate";
+let artService = require("../../services/art")
 
 export default {
-    name: "artDetail",
-    data() {
-        return {
-            imgUrl: null,
-            commentList: [
-                {
-                    userName: "natgeo",
-                    comment: "Morales @hannahreyesmorales | A gray day out at sea was lit up by this spear fisherman. I've met some remarkable small-scale fisherfolk out here in the islands of the Philippines. For our archipelago, located in the center of the world's marine biodiversity, fishing is a way of life for many coastal communities. They know the language of the sea, they help scientists identify species of fish, they understand weather patterns intimately by looking out into the horizon. They are also among the first to witness the devastation happening in our oceans. Follow me @hannahreyesmorales for more stories from the #Philippines, and beyond. #Surigao #fishing",
-                    when: '18h',
-                    img: '1.png',
-                    likes: 20,
-                    replies: 2
-                },
-                {
-                    userName: "thepeassa",
-                    comment: "Zombie! DANGER",
-                    when: '1h',
-                    img: '4.png',
-                    likes: 2,
-                    replies: 2
-                },
-                {
-                    userName: "stephenwilkes",
-                    comment: "This is a gorgeous photo, capturing amazing light and a magical moment. Are people taking photos necessarily oblivious to beauty around them? As a photographer, I’m sure you know that’s not the case.",
-                    when: '8h',
-                    img: '5.png',
-                    likes: 25,
-                    replies: 2
-                },
-                {
-                    userName: "gwenmgal",
-                    comment: "“Somewhere, something incredible is waiting to be known.” - Carl Sagan. An luckily photos like these, capture those fleeting moments.",
-                    when: '1h',
-                    img: '7.png',
-                    likes: 200,
-                    replies: 2
-                },
-                {
-                    userName: "javanoted",
-                    comment: "Terrific shot! It's the simple moments like this that should be captured :)",
-                    when: '15h',
-                    img: '8.png',
-                    likes: 300,
-                    replies: 24
-                },
-                {
-                    userName: "ekiraga",
-                    comment: "I always enjoy your beautiful imagery",
-                    when: '23h',
-                    img: '15.png',
-                    likes: 54,
-                    replies: 2
-                }
-            ]
+  $_veeValidate: {
+    validator: 'new',
+  },
+  name: "artDetail",
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+  },
+  data() {
+    return {
+      form: {
+        title: "",
+        painting: "",
+        description: ""
+      },
+      editForm: {
+        title: "",
+        painting: "",
+        description: ""
+      },
+      imgUrl: null,
+      artId: null,
+      editMode: false,
 
-        };
+      // loader variables
+      updatingImageMetdata: false,
+      fetchingArt: true,
+      fetchingArtMetadata: true
+    };
+  },
+
+  methods: {
+    async DescriptionItem() {
+      this.form.title = ''
+      this.form.painting = ''
+      this.form.description = ''
     },
-    methods: {
-
+    showEditForm() {
+      this.editMode = true;
+      this.editForm.title = this.form.title;
+      this.editForm.painting = this.form.painting;
+      this.editForm.description = this.form.description;
     },
-    async mounted() {
+    async updateImage() {
+      this.updatingImageMetdata = true;
 
-        let imgId = this.$route.params.id;
+      const params = {
+        title: this.editForm.title,
+        painting: this.editForm.painting,
+        description: this.editForm.description
+      }
 
-        // If its static image, show static image
-        if (!isNaN(imgId) && parseInt(imgId) > 0 && parseInt(imgId) <= 20) {
-
-            // Return static asset
-            this.imgUrl = require('./../../assets/art_images/' + imgId + '.png');
-            return;
+      artService.updateImageMetadata(this.artId, params).then((result) => {
+        if (result.data.success) {
+          this.fetchArtMetadata();
+          // disable edit mode when done saving art metadata
+          this.editMode = false;
         }
+        this.updatingImageMetdata = false;
+      }).catch((error) => {
+        console.error(error);
+        this.updatingImageMetdata = false;
+      })
+    },
+    cancelEdit() {
+      // reset form
+      this.resetForm();
+      // disable edit mode
+      this.editMode = false;
+    },
+    //reset
+    resetForm() {
+      this.editForm.title = '';
+      this.editForm.painting = '';
+      this.editForm.description = '';
+    },
 
-        // Read fetch image remotely
-        let url = baseUrl + 'public/image/' + imgId;
-        let response = await axios.get(url);
-        this.imgUrl = response.data.data;
-        console.log('image response', this.imageList);
+    /********************Start: GET Image & Image Metdata *********/
+
+    async fetchArtImage() {
+
+      // If its static image, show static image
+      if (!isNaN(this.artId) && parseInt(this.artId) > 0 && parseInt(this.artId) <= 20) {
+        // Return static asset
+        this.imgUrl = require("./../../assets/art_images/" + this.artId + ".png");
+        return;
+      }
+
+      this.fetchingArt = true;
+      //Read image remotely
+      try {
+        let result = await artService.fetchArt(this.artId);
+        this.imgUrl = result.data.data;
+        this.fetchingArt = false;
+      } catch (e) {
+        this.fetchingArt = false;
+        console.error(e);
+      }
+    },
+
+    async fetchArtMetadata() {
+      this.fetchingArtMetadata = true;
+      try {
+        // Read art metadata
+        let result = await artService.fetchImageMetadata(this.artId);
+        if (result.data.success) {
+          this.form.title = result.data.data.title;
+          this.form.painting = result.data.data.painting;
+          this.form.description = result.data.data.description;
+        }
+        this.fetchingArtMetadata = false;
+      } catch (e) {
+        this.fetchingArtMetadata = false;
+        console.error(e);
+      }
     }
-};
+
+    /********************End: GET Image & Image Metdata *********/
+  },
+
+  async created() {
+    this.artId = this.$route.params.id;
+    this.fetchArtImage();
+    this.fetchArtMetadata();
+  },
+
+}

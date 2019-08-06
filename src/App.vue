@@ -5,21 +5,19 @@
 </template>
 
 <script>
-
-
-  export default {
-    name: 'app',
-    components: {
-    }
-  }
+/*eslint-disable */
+export default {
+  name: "app",
+  components: {}
+};
 </script>
 
 <style>
-  #appDiv {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: #fafafa;
-    min-height: 100vh;
-  }
+#appDiv {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #fafafa;
+  min-height: 100vh;
+}
 </style>

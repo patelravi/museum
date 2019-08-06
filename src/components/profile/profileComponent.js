@@ -31,12 +31,22 @@ export default {
                 toaster: 'b-toaster-bottom-right'
             });
 
-            this.$router.push({ name: 'ArtList', query: { email: this.form.email } });
+            this.$router.push({
+                name: 'ArtList',
+                query: {
+                    email: this.form.email
+                }
+            });
         },
 
         onCancel() {
             // redirect to default list page
-            this.$router.push({ name: 'ArtList', query: { email: this.form.email } });
+            this.$router.push({
+                name: 'ArtList',
+                query: {
+                    email: this.form.email
+                }
+            });
         }
 
     },
@@ -53,7 +63,9 @@ export default {
         if (response == null) {
             // no data found for given email id
             // redirect to default list page
-            this.$router.push({ name: 'ArtList' });
+            this.$router.push({
+                name: 'ArtList'
+            });
         } else {
             this.form.email = response.email;
             this.form.name = response.fullName;
