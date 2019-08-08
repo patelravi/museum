@@ -17,7 +17,9 @@
           </div>
 
           <!-- User name -->
-          <div class="titleName">natgeo</div>
+          <div class="titleName">
+            {{userInfo.userName?userInfo.userName: userInfo.email}}
+          </div>
 
           <!-- Right side settings icon -->
           <div class="settingsIcon">
@@ -43,16 +45,14 @@
         <!-- Right side image description -->
         <div class="col-md-5 rightSide">
 
-          <!-- Title Section -->
+          <!-- HEader Section -->
           <div class="d-none d-md-block">
             <div class=" row pageHeader">
-              <div>
-                <img class="logoImg"
-                  src="https://instagram.fbom2-1.fna.fbcdn.net/vp/20f886aa7cb7d8ed5194807bebc9bc3a/5DC227E8/t51.2885-19/s150x150/13597791_261499887553333_1855531912_a.jpg?_nc_ht=instagram.fbom2-1.fna.fbcdn.net">
-              </div>
 
               <!-- User name -->
-              <div class="titleName">natgeo</div>
+              <div class="titleName">
+                {{userInfo.userName?userInfo.userName: userInfo.email}}
+              </div>
 
               <!-- Right side settings icon -->
               <div class="settingsIcon">

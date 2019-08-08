@@ -28,6 +28,7 @@ export default {
       imgUrl: null,
       artId: null,
       editMode: false,
+      userInfo: null,
 
       // loader variables
       fetchingArt: true,
@@ -113,6 +114,8 @@ export default {
           this.form.title = result.data.data.title;
           this.form.painting = result.data.data.painting;
           this.form.description = result.data.data.description;
+
+          this.userInfo = result.data.data.user;
         }
         this.fetchingArtMetadata = false;
       } catch (e) {
