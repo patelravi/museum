@@ -12,3 +12,7 @@ export async function fetchImageMetadata(artId, params) {
 export async function fetchArt(artId) {
     return Axios.get(baseUrl + "public/image/" + artId);
 }
+
+export async function fetchArtList(params) {
+    return Axios.post(baseUrl + "public/imageList/", params)
+}

@@ -1,6 +1,9 @@
 <template>
     <div id="artListPage">
-
+        <!-- Show Loader -->
+        <div class="pageLoader" v-if="fetchArtList">
+            <b-spinner label="Loading..."></b-spinner>
+        </div>
         <!-- Profile Section -->
         <div class="profileContainer" v-if="userInfo">
             <div class="editBtn">
@@ -22,11 +25,9 @@
                 </div>
             </div>
             <!-- <div class="about">
-                Experience the world through the eyes of National Geographic photographers.
-            </div> -->
+                  Experience the world through the eyes of National Geographic photographers.
+              </div> -->
         </div>
-
-
         <!-- Art List -->
         <div class="row artListContainer" v-if="!fetchingImageList">
             <div class="col-md-4 col-sm-4 col-6 column" v-for="img in imageList" :key="img.id">
@@ -41,17 +42,15 @@
                 </div>
             </div>
         </div>
-        <div v-else style="text-align: center; padding-top: 30vh;">
-            <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
+        <!-- Load More button -->
+        <div class="loadMorebtn" v-if="!fetchingImageList && showLoadMore">
+            <b-button variant="outline-secondary" @click="fetchImages()">Show more image</b-button>
+            <!-- <b-spinner label="Loading..."></b-spinner> -->
         </div>
-
     </div>
 </template>
-
 <script>
     import artListComponent from "./artListComponent";
     export default artListComponent;
 </script>
-
-
 <style lang="scss" src="./artList.scss"></style>

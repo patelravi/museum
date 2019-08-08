@@ -1,6 +1,8 @@
 const axios = require('axios');
 const baseUrl = 'https://museum-backend.herokuapp.com/';
 
+let artService = require("../../services/art")
+
 export default {
     name: "artList",
     data() {
@@ -8,14 +10,21 @@ export default {
             emailId: null,
             imageList: [],
             fetchingImageList: false,
-            userInfo: null
+            userInfo: null,
+            showLoadMore: true,
+            pageSize: 15
 
         };
     },
     methods: {
 
         onEditProfile() {
-            this.$router.push({ name: 'Profile', params: { email: this.userInfo.email } });
+            this.$router.push({
+                name: 'Profile',
+                params: {
+                    email: this.userInfo.email
+                }
+            });
         },
 
         getArtAssetUrl(imgId) {
@@ -26,9 +35,19 @@ export default {
             // If its static image, show static image
             let intId = imgObj.id;
             if (!isNaN(intId) && intId >= 0 && intId <= 20) {
-                this.$router.push({ name: 'ArtDetail', params: { id: (imgObj.id + 1) } });
+                this.$router.push({
+                    name: 'ArtDetail',
+                    params: {
+                        id: (imgObj.id + 1)
+                    }
+                });
             } else {
-                this.$router.push({ name: 'ArtDetail', params: { id: imgObj.id } });
+                this.$router.push({
+                    name: 'ArtDetail',
+                    params: {
+                        id: imgObj.id
+                    }
+                });
             }
         },
 
@@ -62,12 +81,36 @@ export default {
                 }
             } else {
 
-                for (var i = 0; i < 19; i++) {
-                    this.imageList.push({
-                        id: i,
-                        url: require('./../../assets/art_images/' + (i + 1) + '.png')
-                    })
+                this.fetchArtList = true;
+                try {
+                    let params = {
+                        limit: this.pageSize,
+                        lastEvaluatedKey: this.imageList.length > 0 ? this.imageList[this.imageList.length - 1].id : null,
+                    }
+                    let result = await artService.fetchArtList(params);
+
+                    if (result.data.success) {
+                        for (var i = 0; i < result.data.data.length; i++) {
+                            this.imageList.push(result.data.data[i]);
+                        }
+                        if (result.data.data.length < this.pageSize) {
+                            this.showLoadMore = false;
+                        }
+                    }
+                    this.fetchArtList = false
+
+                } catch (e) {
+                    this.fetchArtList = false;
+                    console.log(e);
                 }
+
+
+                // for (var i = 0; i < 19; i++) {
+                //     this.imageList.push({
+                //         id: i,
+                //         url: require('./../../assets/art_images/' + (i + 1) + '.png')
+                //     })
+                // }
 
             }
 
