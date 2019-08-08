@@ -14,7 +14,9 @@
 
           <!-- User name -->
           <div class="titleName">
-            {{userInfo.userName?userInfo.userName: userInfo.email}}
+            <router-link :to="'/user?email=' + userInfo.email">
+              {{userInfo.userName?userInfo.userName: userInfo.email}}
+            </router-link>
           </div>
 
           <!-- Right side settings icon -->
@@ -47,7 +49,9 @@
 
               <!-- User name -->
               <div class="titleName">
-                {{userInfo.userName?userInfo.userName: userInfo.email}}
+                <router-link :to="'/user?email=' + userInfo.email">
+                  {{userInfo.userName?userInfo.userName: userInfo.email}}
+                </router-link>
               </div>
 
               <!-- Right side settings icon -->
