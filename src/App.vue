@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <q-layout view="lHh Lpr lFf">
+
+    <q-page-container>
+      <edenGallery />
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import edenGallery from "./components/edenGallery.vue";
 
 export default {
-  name: 'app',
+  name: "LayoutDefault",
+
   components: {
-    HelloWorld
+    edenGallery
+  },
+
+  data() {
+    return {
+      leftDrawerOpen: this.$q.platform.is.desktop
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
