@@ -1,12 +1,12 @@
 <template>
-  <q-layout view="lHh Lpr fff">
+  <q-layout id="app" view="lHh Lpr fff">
 
-    <div class="text-h4">
+    <!-- <div class="text-h4">
       EDEN
-
     </div>
 
-    <q-input class="GPL__toolbar-input" anchor="top right" self="top right" dense standout="bg-primary" v-model="search" placeholder="Search">
+    <q-input class="GPL__toolbar-input" anchor="top right" self="top right" dense standout="bg-primary" v-model="search"
+      placeholder="Search">
       <template v-slot:prepend>
         <q-icon v-if="search === ''" name="search" />
         <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
@@ -42,16 +42,16 @@
 
       <div class="absolute-full text-h2  flex flex-center text-center" style=" color:black; margin-top:400px;">
         Browser original art from new artists every week
-      </div>
-      <!-- <div class="absolute-full text-h6 flex flex-center" style=" color:#dfb458; padding-top:440px">
+      </div> -->
+    <!-- <div class="absolute-full text-h6 flex flex-center" style=" color:#dfb458; padding-top:440px">
         Hundreds of high resolution paintings added regularly
       </div> -->
 
-      <q-btn flat style="color:#262223;" label="Filter" class="q-ml-sm q-px-md flex flex-center" />
-      <q-btn color="white" text-color="black" label="Popular" class="q-ml-sm q-px-md" />
-      <q-btn flat label="Fresh" class="q-ml-sm q-px-md" />
+    <!-- <q-btn flat style="color:#262223;" label="Filter" class="q-ml-sm q-px-md flex flex-center" />
+    <q-btn color="white" text-color="black" label="Popular" class="q-ml-sm q-px-md" />
+    <q-btn flat label="Fresh" class="q-ml-sm q-px-md" /> -->
 
-    </div>
+    <!-- </div> -->
 
   </q-layout>
 
@@ -61,55 +61,55 @@
 </style>
 
 <script>
-export default {
-  name: "edenGallery",
-  data() {
-    return {
-      leftDrawerOpen: false,
-      search: "",
-      storage: 0.26
-    };
-  }
-  //   components: ["QImg"]
-};
+  export default {
+    name: "edenGallery",
+    data() {
+      return {
+        leftDrawerOpen: false,
+        search: "",
+        storage: 0.26
+      };
+    }
+    //   components: ["QImg"]
+  };
 </script>
 <style lang="stylus">
-.GPL {
-  &__toolbar {
-    height: 64px;
-    border: 1px solid red;
-  }
+  .GPL {
+    &__toolbar {
+      height: 64px;
+      border: 1px solid red;
+    }
 
-  &__toolbar-input {
-    width: 35%;
-    border: 1px solid red;
-  }
-}
-
-.YL {
-  &__toolbar-input-container {
-    min-width: 100px;
-    width: 55%;
-  }
-
-  &__toolbar-input-btn {
-    border-radius: 0;
-    border-style: solid;
-    border-width: 1px 1px 1px 0;
-    border-color: rgba(0, 0, 0, 0.24);
-    max-width: 60px;
-    width: 100%;
-  }
-
-  &__drawer-footer-link {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.75rem;
-
-    &:hover {
-      color: #000;
+    &__toolbar-input {
+      width: 35%;
+      border: 1px solid red;
     }
   }
-}
+
+  .YL {
+    &__toolbar-input-container {
+      min-width: 100px;
+      width: 55%;
+    }
+
+    &__toolbar-input-btn {
+      border-radius: 0;
+      border-style: solid;
+      border-width: 1px 1px 1px 0;
+      border-color: rgba(0, 0, 0, 0.24);
+      max-width: 60px;
+      width: 100%;
+    }
+
+    &__drawer-footer-link {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.75rem;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
 </style>
