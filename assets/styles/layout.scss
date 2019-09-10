@@ -1,0 +1,51 @@
+#defaultPageLayout {
+    // padding-left: 5%;
+    // padding-right: 5%;
+
+    // background: red;
+    .header {
+        margin-top: 20px;
+
+        .edenTitle {
+            margin-left: 15px;
+            font-size: 30px;
+
+            .searchBox {
+                width: 30%;
+                display: inline-block;
+                text-align: center;
+                margin-left: 20% !important;
+            }
+
+            .title {
+                padding-left: 20px;
+                display: inline-block;
+                font-size: 20px;
+            }
+
+            .rightSide {
+                float: right;
+                padding-right: 20px;
+            }
+        }
+    }
+
+    .footer {
+        align-items: baseline;
+        height: 23vh;
+
+        .footerTitle {
+            font-size: 50px;
+        }
+
+        .footer1 {
+            padding-left: 20%;
+            display: inline-block;
+        }
+
+        .footer2 {
+            padding-left: 5%;
+            //display: inline-block;
+        }
+    }
+}
