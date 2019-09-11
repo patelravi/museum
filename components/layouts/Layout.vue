@@ -2,28 +2,16 @@
   <div id="defaultPageLayout">
 
     <div class="header">
-      <div class="edenTitle">
-        <b> EDEN</b>
+      <b> EDEN</b>
 
-        <!-- Search Box -->
-        <div class="searchBox">
-          <v-text-field class="input" label="Search" single-line outlined></v-text-field>
-        </div>
-
-        <div class="rightSide">
-          <div class="title">
-            For Artists
-          </div>&nbsp;
-          <div class="title">
-            For Art Lover
-          </div>&nbsp;
-          <div class="title">
-            Login
-          </div>
-          <!-- Sign Up Btn -->
-          <v-btn outlined color="black">Sign Up</v-btn>
-        </div>
+      <div class="rightSide">
+        <v-text-field class="input searchBox" label="Search" single-line outlined></v-text-field>
+        <v-btn text color="primary">For Artists</v-btn>
+        <v-btn text color="primary">For Art Lover</v-btn>
+        <v-btn text color="primary"> Login</v-btn>
+        <v-btn outlined color="black">Sign Up</v-btn>
       </div>
+
 
     </div>
 
@@ -83,12 +71,12 @@
 </template>
 
 <script>
-export default {
-  props: {},
-  data() {
-    return {};
-  }
-};
+  export default {
+    props: {},
+    data() {
+      return {};
+    }
+  };
 </script>
 
 
