@@ -1,74 +1,65 @@
 #artListPage {
 
     // Desktop Style
-    @media (min-width: 750px) {
-        width: 70%;
+    @media (min-width: 800px) {
+        width: 100%;
         margin: auto;
 
         .column {
-            padding: 15px;
+            padding: 10px;
 
             .artContainer {
-                min-height: 220px;
+                min-height: 250px;
             }
         }
     }
 
-    // Mobile Style
-    // @media (max-width: 768px) {
-    //     width: 95%;
-    //     margin: auto;
-    //     overflow: hidden;
 
-    //     .column {
-    //         padding: 5px;
+    .about {
+        .headLine {
+            position: relative;
 
-    //         .artContainer {
-    //             min-height: 160px;
-    //         }
-    //     }
-    // }
+            .mainImage {
+                height: 50vh;
+            }
 
-    // .profileContainer {
-    //     padding-top: 50px;
-    //     color: #555;
-    //     margin-bottom: 20px;
 
-    //     .userName {
-    //         //  color: black;
-    //         font-size: 20px;
-    //     }
+            .headLine1 {
+                position: absolute;
+                bottom: 50%;
+                left: 38%;
+                color: white;
+                font-size: 50px;
+            }
 
-    //     .activities {
-    //         span {
-    //             padding-right: 20px;
-    //             font-size: 15px;
-    //         }
-    //     }
+            .headLine2 {
+                position: absolute;
+                bottom: 45%;
+                left: 30%;
+                color: white;
+                font-size: 25px;
+            }
+        }
+    }
 
-    //     .fullName {
-    //         color: black;
-    //         font-size: 20px;
-    //         margin-top: 20px;
-    //         font-weight: bold;
-    //     }
 
-    //     .about {
-    //         font-size: 14px;
-    //     }
+    .detail {
+        margin-top: 2%;
+        text-align: center;
+        font-size: 25px;
+    }
 
-    //     .location {
-    //         font-size: 14px;
-    //         font-weight: normal;
-    //         color: black;
-    //     }
+    .filterOption {
+        margin-top: 3%;
+        margin-bottom: 2%;
+        text-align: center;
 
-    //     .editBtn {
-    //         float: right;
-    //         margin-top: 10px;
-    //         padding: 0px;
-    //     }
-    // }
+        .filterBtn {
+            display: inline-block;
+        }
+    }
+
+
 
     .artListContainer {
         .column {
@@ -90,8 +81,6 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-
-                    //background: #00000066;
                     color: white;
                     padding-top: 50%;
                     text-align: center;
@@ -104,5 +93,19 @@
                 }
             }
         }
+    }
+
+
+    .viewAllArtBtn {
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 4%;
+
+        button {
+            width: 30%;
+            height: 50px;
+            margin: 0px;
+        }
+
     }
 }

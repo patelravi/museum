@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="defaultPageLayout">
     <!-- <Layout> -->
     <Nuxt />
     <!-- </Layout> -->
@@ -9,27 +9,7 @@
 <script>
 export default {
   data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "welcome",
-          to: "/"
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire"
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js"
-    };
+    return {};
   }
 };
 </script>
@@ -37,6 +17,11 @@ export default {
 
 <style lang="scss">
 #defaultPageLayout {
+  .v-application {
+    background: white;
+    //color: #ffffff;
+  }
+
   @font-face {
     font-family: "roboto";
     src: url("/roboto/Roboto-Black.ttf");
@@ -53,42 +38,42 @@ export default {
     src: url("/roboto/Roboto-Thin.ttf");
   }
 
-  .header {
-    margin-top: 40px;
-    .edenTitle {
-      font-size: 30px;
-      .searchBox {
-        width: 50%;
-        display: inline-block;
-        text-align: center;
-      }
-      .title {
-        padding-left: 20px;
-        display: inline-block;
-        font-size: 20px;
-      }
-      .rightSide {
-        float: right;
-        padding-right: 20px;
-      }
-    }
-  }
+  // .header {
+  //   margin-top: 40px;
+  //   .edenTitle {
+  //     font-size: 30px;
+  //     .searchBox {
+  //       width: 50%;
+  //       display: inline-block;
+  //       text-align: center;
+  //     }
+  //     .title {
+  //       padding-left: 20px;
+  //       display: inline-block;
+  //       font-size: 20px;
+  //     }
+  //     .rightSide {
+  //       float: right;
+  //       padding-right: 20px;
+  //     }
+  //   }
+  // }
 
-  .footer {
-    align-items: baseline;
-    height: 23vh;
+  //   .footer {
+  //     align-items: baseline;
+  //     height: 30vh;
 
-    .footerTitle {
-      font-size: 50px;
-    }
-    .footer1 {
-      padding-left: 20%;
-      display: inline-block;
-    }
-    .footer2 {
-      padding-left: 5%;
-      //display: inline-block;
-    }
-  }
+  //     .footerTitle {
+  //       font-size: 50px;
+  //     }
+  //     .footer1 {
+  //       padding-left: 20%;
+  //       display: inline-block;
+  //     }
+  //     .footer2 {
+  //       padding-left: 5%;
+  //       //display: inline-block;
+  //     }
+  //   }
 }
 </style>

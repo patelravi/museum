@@ -1,48 +1,6 @@
 <template>
   <Layout>
-    <v-layout column justify-center align-center>
-
-      <!-- <v-card>
-          <v-card-title class="headline">
-            Welcome to the Vuetify + Nuxt.js template
-          </v-card-title>
-          <v-card-text>
-            <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-            <p>
-              For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">
-                documentation
-              </a>.
-            </p>
-            <p>
-              If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">
-                discord
-              </a>.
-            </p>
-            <p>
-              Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">
-                issue board
-              </a>.
-            </p>
-            <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-            <div class="text-xs-right">
-              <em><small>&mdash; John Leider</small></em>
-            </div>
-            <hr class="my-3">
-            <a href="https://nuxtjs.org/" target="_blank">
-              Nuxt Documentation
-            </a>
-            <br>
-            <a href="https://github.com/nuxt/nuxt.js" target="_blank">
-              Nuxt GitHub
-            </a>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" nuxt to="/inspire">
-              Continue
-            </v-btn>
-          </v-card-actions>
-        </v-card> -->
+    <v-layout>
 
       <div id="artListPage">
 
@@ -67,11 +25,29 @@
             </div>
           </div>
 
-           <div class="about">
-                Experience the world through the eyes of National Geographic photographers.
-            </div> 
+          
          
         </div> -->
+        <div class="about">
+          <div class="headLine">
+            <img class="mainImage" src="~/assets/art_images/musem.jpg" style="width: 100%;height: 50vh;">
+            <div class="headLine1">Your Art Online</div>
+            <div class="headLine2"> Hundreds of high resolution painting added regularly</div>
+          </div>
+        </div>
+
+        <div class="detail">
+          <h2>Browse original art from new artists <br>
+            every week</h2>
+        </div>
+
+        <div class="filterOption">
+          <div class="filterBtn">
+            <v-btn text large rounded>Filter</v-btn>
+            <v-btn outlined color="blue" rounded>Popular</v-btn>
+            <v-btn text large rounded>Fresh</v-btn>
+          </div>
+        </div>
 
         <!-- Art List -->
 
@@ -87,9 +63,13 @@
             </div>
           </div>
         </div>
-        <div v-else style="text-align: center; padding-top: 30vh;">
-          <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
+
+        <div class="viewAllArtBtn">
+          <v-btn outlined color="black">View all Art works</v-btn>
         </div>
+        <!-- <div v-else style="text-align: center; padding-top: 30vh;">
+          <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
+        </div> -->
 
       </div>
 
