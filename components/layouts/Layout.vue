@@ -6,12 +6,11 @@
 
       <div class="rightSide">
         <v-text-field class="input searchBox" label="Search" single-line outlined></v-text-field>
-        <v-btn text color="primary">For Artists</v-btn>
-        <v-btn text color="primary">For Art Lover</v-btn>
-        <v-btn text color="primary"> Login</v-btn>
+        <v-btn text color="black">For Artists</v-btn>
+        <v-btn text color="black">For Art Lover</v-btn>
+        <v-btn text color="black"> Login</v-btn>
         <v-btn outlined color="black">Sign Up</v-btn>
       </div>
-
 
     </div>
 
@@ -64,19 +63,25 @@
         <h2>Follow us</h2>
       </div>
 
+      <div class="copyRightDetail">
+
+        All rights reserved Artweb &copy;2019 Eden
+
+      </div>
+
     </v-footer>
 
   </div>
 
 </template>
-
+  
 <script>
-  export default {
-    props: {},
-    data() {
-      return {};
-    }
-  };
+export default {
+  props: {},
+  data() {
+    return {};
+  }
+};
 </script>
 
 
